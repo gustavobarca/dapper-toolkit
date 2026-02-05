@@ -27,9 +27,7 @@ using Lithe;
 
 public sealed class User
 {
-    [Column("user_id")]
     public int UserId { get; set; }
-    [Column("full_name")]
     public string Name { get; set; } = string.Empty;
 }
 
