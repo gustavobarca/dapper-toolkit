@@ -2,7 +2,7 @@
 
 [![NuGet](https://img.shields.io/nuget/v/Lithe.svg)](https://www.nuget.org/packages/Lithe/)
 
-Micro-ORM built on top of Dapper, currently focused on a `GetAsync<T>` extension for `IDbConnection`.
+Micro-ORM built on top of Dapper.
 
 ## Install (dotnet CLI)
 
