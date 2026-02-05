@@ -15,7 +15,7 @@ dotnet add package Lithe
 `GetAsync<T>` builds a `SELECT` statement and queries by primary key. It follows these conventions:
 
 - Table name: `typeof(T).Name`
-- Key column: `{TypeName}Id` (case-insensitive)
+- Key column: `[Key]` when present, otherwise `Id` or `{TypeName}Id` (case-insensitive)
 - Columns: all public readable instance properties (uses `[Column("Name")]` when present)
 
 Example:

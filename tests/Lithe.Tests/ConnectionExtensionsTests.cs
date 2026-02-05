@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Lithe.Tests;
 
@@ -7,6 +8,9 @@ public class ConnectionExtensionsTest
     class Teste
     {
         public Guid TesteId { get; set; }
+
+        [Key]
+        public Guid PrimaryKey { get; set; }
 
         [Column("name")]
         public string Name { get; set; }

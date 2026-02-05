@@ -1,4 +1,5 @@
 ﻿using System.Collections.Concurrent;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data;
 using System.Reflection;
@@ -135,17 +136,37 @@ public static class ConnectionExtensions
     {
         var props = type.GetProperties(BindingFlags.Public | BindingFlags.Instance);
         var typeId = type.Name + "Id";
+        var keyProps = props
+            .Where(p => p.GetCustomAttribute<KeyAttribute>() is not null)
+            .ToArray();
+
+        if (keyProps.Length == 1)
+        {
+            return GetColumnName(keyProps[0]);
+        }
+
+        if (keyProps.Length > 1)
+        {
+            throw new InvalidOperationException($"Type '{type.FullName}' has multiple [Key] properties.");
+        }
 
         for (var i = 0; i < props.Length; i++)
         {
             var name = props[i].Name;
 
-            if (string.Equals(name, typeId, StringComparison.OrdinalIgnoreCase))
+            if (string.Equals(name, "Id", StringComparison.OrdinalIgnoreCase) ||
+                string.Equals(name, typeId, StringComparison.OrdinalIgnoreCase))
             {
-                return name;
+                return GetColumnName(props[i]);
             }
         }
 
-        throw new InvalidOperationException($"Type '{type.FullName}' must have an 'Id' or '{type.Name}Id' property, or pass keyName explicitly.");
+        throw new InvalidOperationException($"Type '{type.FullName}' must have a [Key] property, or an 'Id' or '{type.Name}Id' property, or pass keyName explicitly.");
+    }
+
+    private static string GetColumnName(PropertyInfo prop)
+    {
+        var columnAttribute = prop.GetCustomAttribute<ColumnAttribute>();
+        return string.IsNullOrWhiteSpace(columnAttribute?.Name) ? prop.Name : columnAttribute!.Name!;
     }
 }
