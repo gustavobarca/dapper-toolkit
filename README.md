@@ -1,4 +1,4 @@
-# Lithe
+# 🪶 Lithe
 
 [![NuGet](https://img.shields.io/nuget/v/Lithe.svg)](https://www.nuget.org/packages/Lithe/)
 
