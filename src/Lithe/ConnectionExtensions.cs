@@ -72,6 +72,12 @@ public static class ConnectionExtensions
             .Where(p => p.CanRead && p.GetIndexParameters().Length == 0)
             .Select(p =>
             {
+                var transformAttribute = p.GetCustomAttribute<TransformAttribute>();
+                if (!string.IsNullOrWhiteSpace(transformAttribute?.Expression))
+                {
+                    return $"{transformAttribute!.Expression} as \"{p.Name}\"";
+                }
+
                 var columnAttribute = p.GetCustomAttribute<ColumnAttribute>();
                 return string.IsNullOrWhiteSpace(columnAttribute?.Name) ? $"\"{p.Name}\"" : $"{columnAttribute!.Name} as \"{p.Name}\"";
             })

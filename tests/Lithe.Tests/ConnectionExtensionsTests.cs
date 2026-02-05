@@ -7,7 +7,12 @@ public class ConnectionExtensionsTest
     class Teste
     {
         public Guid TesteId { get; set; }
+
+        [Column("name")]
         public string Name { get; set; }
+
+        [Transform("ST_TRANSFORM(\"Coordinates\", 4326)")]
+        public string Coordinates { get; set; }
     }
 
     [Fact]

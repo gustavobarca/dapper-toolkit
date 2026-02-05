@@ -52,6 +52,22 @@ public sealed class User
 }
 ```
 
+### Transform on GET
+
+Use `[Transform("...")]` to apply a raw SQL expression only on `SELECT` (GET).  
+This keeps `INSERT` using the real column name.
+
+```csharp
+public sealed class Place
+{
+    public Guid PlaceId { get; set; }
+
+    [Column("geom")]
+    [Transform("St_transform(geom, 4326)")]
+    public string Geometry { get; set; } = string.Empty;
+}
+```
+
 ## Usage: `GetManyAsync<T>`
 
 `GetManyAsync<T>` builds the same `SELECT` statement as `GetAsync<T>`, but returns a list.
