@@ -2,11 +2,11 @@
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.2.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dapper.Toolkit", "src\Dapper.Toolkit\Dapper.Toolkit.csproj", "{83235CC5-20C6-A3AB-4021-A84ABAEC5023}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lithe", "src\Lithe\Lithe.csproj", "{83235CC5-20C6-A3AB-4021-A84ABAEC5023}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{594A20CB-2E53-42E3-AF12-68F162E75C19}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dapper.Toolkit.Tests", "tests\Dapper.Toolkit.Tests\Dapper.Toolkit.Tests.csproj", "{93B0E849-A61C-49CD-AC28-C891D7C3AA94}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lithe.Tests", "tests\Lithe.Tests\Lithe.Tests.csproj", "{93B0E849-A61C-49CD-AC28-C891D7C3AA94}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,4 +1,4 @@
-﻿namespace Dapper.Toolkit.Tests;
+﻿namespace Lithe.Tests;
 
 public class ConnectionExtensionsTest
 {

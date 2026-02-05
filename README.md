@@ -1,11 +1,11 @@
-# Dapper.Toolkit
+# Lithe
 
-Lightweight helpers for Dapper, currently focused on a `GetAsync<T>` extension for `IDbConnection`.
+Micro-ORM built on top of Dapper, currently focused on a `GetAsync<T>` extension for `IDbConnection`.
 
 ## Install (dotnet CLI)
 
 ```bash
-dotnet add package Dapper.Toolkit
+dotnet add package Lithe
 ```
 
 ## Usage: `GetAsync<T>`
@@ -21,7 +21,7 @@ Example:
 ```csharp
 using System.Data;
 using Dapper;
-using Dapper.Toolkit;
+using Lithe;
 
 public sealed class User
 {

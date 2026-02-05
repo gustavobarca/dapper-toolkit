@@ -1,8 +1,9 @@
 ﻿using System.Collections.Concurrent;
 using System.Data;
 using System.Reflection;
+using Dapper;
 
-namespace Dapper.Toolkit;
+namespace Lithe;
 
 public static class ConnectionExtensions
 {

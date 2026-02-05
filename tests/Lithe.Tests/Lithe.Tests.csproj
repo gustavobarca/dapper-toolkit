@@ -19,7 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Dapper.Toolkit\Dapper.Toolkit.csproj" />
+    <ProjectReference Include="..\..\src\Lithe\Lithe.csproj" />
   </ItemGroup>
 
 </Project>
