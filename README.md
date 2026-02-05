@@ -16,7 +16,7 @@ dotnet add package Lithe
 
 - Table name: `typeof(T).Name`
 - Key column: `{TypeName}Id` (case-insensitive)
-- Columns: all public readable instance properties
+- Columns: all public readable instance properties (uses `[Column("Name")]` when present)
 
 Example:
 
@@ -27,7 +27,9 @@ using Lithe;
 
 public sealed class User
 {
+    [Column("user_id")]
     public int UserId { get; set; }
+    [Column("full_name")]
     public string Name { get; set; } = string.Empty;
 }
 
@@ -39,3 +41,15 @@ public static async Task<User?> LoadUserAsync(IDbConnection connection, int id)
 ```
 
 If your key property does not follow the `{TypeName}Id` convention, `GetAsync<T>` will throw an `InvalidOperationException`.
+
+You can specify a custom name for the column mapping
+
+```csharp
+public sealed class User
+{
+    [Column("user_id")]
+    public int UserId { get; set; }
+    [Column("full_name")]
+    public string Name { get; set; } = string.Empty;
+}
+```

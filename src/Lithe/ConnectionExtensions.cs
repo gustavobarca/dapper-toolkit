@@ -1,4 +1,5 @@
 ﻿using System.Collections.Concurrent;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Data;
 using System.Reflection;
 using Dapper;
@@ -36,7 +37,11 @@ public static class ConnectionExtensions
         var props = type
             .GetProperties(BindingFlags.Public | BindingFlags.Instance)
             .Where(p => p.CanRead && p.GetIndexParameters().Length == 0)
-            .Select(p => $"\"{p.Name}\"")
+            .Select(p =>
+            {
+                var columnAttribute = p.GetCustomAttribute<ColumnAttribute>();
+                return string.IsNullOrWhiteSpace(columnAttribute?.Name) ? $"\"{p.Name}\"" : $"{columnAttribute!.Name} as \"{p.Name}\"";
+            })
             .ToArray();
 
         if (props.Length == 0)
