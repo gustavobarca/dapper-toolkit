@@ -12,6 +12,17 @@ public static class ConnectionExtensions
     private static readonly ConcurrentDictionary<Type, string> TableNameCache = new();
     private static readonly ConcurrentDictionary<Type, string> KeyNameCache = new();
 
+
+    public static Task<IEnumerable<T>> GetManyAsync<T>(this IDbConnection connection, object id)
+    {
+        ArgumentNullException.ThrowIfNull(connection);
+        ArgumentNullException.ThrowIfNull(id);
+
+        var sql = BuildSelect<T>();
+
+        return connection.QueryAsync<T>(new CommandDefinition(sql, new { Id = id }));
+    }
+
     public static Task<T?> GetAsync<T>(this IDbConnection connection, object id)
     {
         ArgumentNullException.ThrowIfNull(connection);
